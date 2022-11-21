@@ -1,4 +1,7 @@
-import java.util.*;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public abstract class Entrada {
 	private static Scanner readData = new Scanner(System.in);
 	
@@ -62,29 +65,6 @@ public abstract class Entrada {
 		return value;
 	}
 	
-	// ***NO FUNCIONA AL MAIN, NO SE PERQUÈ*** 
-	/*public static char readChar(String str) throws Exception {
-		char value = 0; // I can compare characters with numbers because of ASCII code, and 0 is = null, so you can't introduce null by coincidence
-		
-		do {
-			System.out.println(str);
-			value = readData.next().charAt(0);
-			if (readData.next().length() > 1) {
-				throw new Exception();
-			}
-			try {
-				System.out.println(str);
-				value = readData.next().charAt(0);
-				// As nextChar is not a method of class Scanner,I read it as a String and check for first character
-				
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-			readData.nextLine();
-		} while (value == 0);
-		return value;
-	} */
-	
 	public static char readChar(String str) {
 		char value = 0;
 		do {
@@ -120,11 +100,11 @@ public abstract class Entrada {
 		do {
 			System.out.println(sentence);
 			try {
-				str = readData.nextLine();
-				if (str.equalsIgnoreCase("s")) {
+				str = readData.nextLine().toUpperCase();
+				if (str.charAt(0) == 'S') {
 					bool = true;
 					correct = true;
-				} else if (str.equalsIgnoreCase("n")) {
+				} else if (str.charAt(0) == 'N') {
 					bool = false; 
 					correct = true;
 				} else {
@@ -132,7 +112,7 @@ public abstract class Entrada {
 					correct = false;
 				}
 			} catch (Exception e) {
-				System.out.println("Wrong. You must type S or N");
+				System.out.println("Wrong. You must type si or no");
 			}
 		} while (!correct); 
 		return bool;
